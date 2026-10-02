@@ -17,27 +17,27 @@ invalid_id   {digit}+{letter}({letter}|{digit})*
     /* ignorar whitespace */
 }
 
-if {
+"if" {
 	 printf("%s Esto es un if\n", yytext);
 } 
 
-else {
+"else" {
 	 printf("%s Esto es un else\n", yytext);
 }
 
-char {
+"char" {
 	printf("%s Esto es un char\n", yytext);
 }
 
-int {
+"int" {
 	 printf("%s Esto es un int\n", yytext);
 }
 
-float {
+"float" {
 	 printf("%s Esto es un float\n", yytext);
 }
 
-return {
+"return" {
 	 printf("%s Esto es un return\n", yytext);
 }
 
@@ -73,8 +73,28 @@ return {
 	 printf("%s Operador de Diviión\n", yytext);
 }
 
-{id} {
-    printf("%s este es un ID\n", yytext);
+"(" {
+	 printf("%s Token de puntuación.\n", yytext);
+}
+
+")" {
+	 printf("%s Token de puntuación.\n", yytext);
+}
+
+"{" {
+	 printf("%s Token de puntuación.\n", yytext);
+}
+
+"}" {
+	 printf("%s Token de puntuación.\n", yytext);
+}
+
+"," {
+	 printf("%s Token de puntuación.\n", yytext);
+}
+
+";" {
+	 printf("%s Token de puntuación.\n", yytext);
 }
 
 {number} {
@@ -83,6 +103,14 @@ return {
 
 {invalid_id} {
 	printf("%s Este es un ID invalido", yytext);
+}
+
+{id} {
+    printf("%s este es un ID\n", yytext);
+}
+
+.	{ 
+	printf("%s Este es un caracter invalido\n", yytext); 
 }
 
 %%
