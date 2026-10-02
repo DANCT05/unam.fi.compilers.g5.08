@@ -1,18 +1,65 @@
-hola+hola
-123923asikdjas
-hola+(hola);
-@hola
-.hola
-hola$
-"hola"
+if
+else
+char
+int
+float
+return
 
-ho$la
-$hola
-hola"
+hola
+abc
+abc123
+variable2
+ifelse
+return2
+int123
 
-1213.121231.1231-
+1
+89
+123456
+3.14
+0.25
+27329e22
+25E10
+25E+10
+25E-10
+3.1416e-5
 
-121$.3242
++
+-
+*
+/
+=
+==
+>=
+<=
 
-"Hola if %s kdk"
-"12312312"
+(
+)
+{
+}
+,
+;
+
+int x;
+float temperatura;
+char letra;
+x = 25;
+x = x + 1;
+resultado = a+b;
+if(x>=10)
+return resultado;
+
+"Hola"
+"123456"
+"Hola123"
+"Hola mundo"
+"Hola %s"
+"Resultado = %d"
+"a+b"
+"(hola)"
+"if else return"
+"123.45"
+"@#$%"
+""
+
+"Hola "mundo" " ' "

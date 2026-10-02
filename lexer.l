@@ -16,7 +16,7 @@ punctuation             [(){},;]
 
 ws                      [ \t\r\n]+
 
-valid_char_literal      ({letter}|{digit}|{operator}|{ws}|{punctuation}|[@''#$%?¿.])
+valid_char_literal      ({letter}|{digit}|{operator}|{ws}|{punctuation}|[""@''#$%?¿.])
 
 id                      {letter}({letter}|{digit})*
 number                  {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
