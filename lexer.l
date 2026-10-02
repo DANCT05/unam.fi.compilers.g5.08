@@ -1,28 +1,30 @@
 %{
-#include<stdio.h>
-
+#include <stdio.h>
 %}
 
-letter 	[A-Za-z]
-digit 	[0-9]
-ws 		[ \t\n]
+letter  [A-Za-z]
+digit   [0-9]
+ws      [ \t\r\n]+
+
+id      {letter}({letter}|{digit})*
+number  {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
 
 %%
-
-{letter} {
-	printf("%s esta es una letra\n", yytext);
-}
-
-{digit} {
-	printf("%s esta es un digito\n", yytext);
-}
 
 {ws} {
-	printf("%s esta es un espacio\n", yytext);
+    /* ignorar whitespace */
+}
+
+{id} {
+    printf("%s este es un ID\n", yytext);
+}
+
+{number} {
+    printf("%s este es un number\n", yytext);
 }
 
 %%
 
-int yywrap(){
-	return 1;
+int yywrap() {
+    return 1;
 }
