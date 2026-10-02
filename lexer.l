@@ -15,6 +15,30 @@ number  {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
     /* ignorar whitespace */
 }
 
+if {
+	 printf("%Esto es un if\n", yytext);
+}
+
+else {
+	 printf("Esto es un else\n", yytext);
+}
+
+char {
+	printf("%Esto es un char\n", yytext);
+}
+
+int {
+	 printf("%Esto es un int\n", yytext);
+}
+
+float {
+	 printf("%Esto es un float\n", yytext);
+}
+
+return {
+	 printf("Esto es un return\n", yytext);
+}
+
 {id} {
     printf("%s este es un ID\n", yytext);
 }
