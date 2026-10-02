@@ -16,9 +16,11 @@ punctuation             [(){},;]
 
 ws                      [ \t\r\n]+
 
+valid_char_literal      ({letter}|{digit}|{operator}|{ws}|{punctuation}|[@''#$%?¿.])
+
 id                      {letter}({letter}|{digit})*
 number                  {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
-literal                 \"({letter}|{digit})*\"
+literal                 \"({valid_char_literal})*\"
 
 invalid_char_id         [""@''#$%?¿.]
 
@@ -36,6 +38,10 @@ invalid_id              ({invalid_id_start_digit}|{invalid_id_start_symbol}|{inv
     /* ignorar whitespace */
 }
 
+{literal} {
+    printf("%s es un literal\n", yytext);
+}
+
 {keyword} {
     printf("%s es un keyword\n", yytext);
 }
@@ -50,10 +56,6 @@ invalid_id              ({invalid_id_start_digit}|{invalid_id_start_symbol}|{inv
 
 {punctuation} {
     printf("%s es un token de puntuacion\n", yytext);
-}
-
-{literal} {
-    printf("%s es un literal\n", yytext);
 }
 
 {invalid_id} {
