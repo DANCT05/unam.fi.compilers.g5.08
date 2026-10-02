@@ -4,3 +4,13 @@ hola+(hola);
 @hola
 .hola
 hola$
+"hola"
+
+ho$la
+$hola
+hola"
+
+1213.121231.1231-
+
+121$.3242
+
