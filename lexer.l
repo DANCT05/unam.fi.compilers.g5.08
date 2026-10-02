@@ -8,6 +8,7 @@ ws      [ \t\r\n]+
 
 id      {letter}({letter}|{digit})*
 number  {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
+literal \"({letter}|{digit})*\"
 
 invalid_id   {digit}+{letter}({letter}|{digit})*
 
@@ -107,6 +108,10 @@ invalid_id   {digit}+{letter}({letter}|{digit})*
 
 {id} {
     printf("%s este es un ID\n", yytext);
+}
+
+{literal} {
+    printf("%s este es un literal\n", yytext);
 }
 
 .	{ 
