@@ -1,65 +1,9 @@
-if
-else
-char
-int
-float
-return
-
-hola
-abc
-abc123
-variable2
-ifelse
-return2
-int123
-
-1
-89
-123456
-3.14
-0.25
-27329e22
-25E10
-25E+10
-25E-10
-3.1416e-5
-
-+
--
-*
-/
-=
-==
->=
-<=
-
-(
-)
-{
-}
-,
-;
-
-int x;
-float temperatura;
-char letra;
-x = 25;
-x = x + 1;
-resultado = a+b;
-if(x>=10)
-return resultado;
-
-"Hola"
-"123456"
-"Hola123"
-"Hola mundo"
-"Hola %s"
-"Resultado = %d"
-"a+b"
-"(hola)"
-"if else return"
-"123.45"
-"@#$%"
-""
-
-"Hola "mundo" " ' "
+"HOLA"
+como
+estas
+92392.132
+efmemf.2121
+1212msadas
+"h' dsds "" 'o"
+hola+hola
+hola+"'sjas"
