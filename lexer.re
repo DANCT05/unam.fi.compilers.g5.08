@@ -1,7 +1,7 @@
 #include <string>
 #include "token.h"
 
-bool yylex(const char *&YYCURSOR, TokenType &token, string &lexeme) {
+bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, string &lexeme) {
     const char *YYMARKER;
 
     while (true) {
@@ -90,9 +90,39 @@ bool yylex(const char *&YYCURSOR, TokenType &token, string &lexeme) {
                 return true;
             }
 
-            invalid_id {
-                lexeme.assign(start,YYCURSOR - start);
-                token = TOKEN_ERROR_ID;
+
+            invalid_id_start_digit {
+                lexeme.assign(start, YYCURSOR - start);
+
+                token = TOKEN_ERROR;
+                errorValue = ERROR_ID_START_DIGIT;
+
+                return true;
+            }
+
+            invalid_id_start_symbol {
+                lexeme.assign(start, YYCURSOR - start);
+
+                token = TOKEN_ERROR;
+                errorValue = ERROR_ID_START_SYMBOL;
+
+                return true;
+            }
+
+            invalid_id_middle_symbol {
+                lexeme.assign(start, YYCURSOR - start);
+
+                token = TOKEN_ERROR;
+                errorValue = ERROR_ID_MIDDLE_SYMBOL;
+
+                return true;
+            }
+
+            invalid_id_last_symbol {
+                lexeme.assign(start, YYCURSOR - start);
+
+                token = TOKEN_ERROR;
+                errorValue = ERROR_ID_LAST_SYMBOL;
 
                 return true;
             }
@@ -112,8 +142,10 @@ bool yylex(const char *&YYCURSOR, TokenType &token, string &lexeme) {
             }
 
             * {
-                lexeme.clear();
-                token = TOKEN_ERROR_INVALID_CHAR;
+                lexeme.assign(start, YYCURSOR - start);
+
+                token = TOKEN_ERROR;
+                errorValue = ERROR_INVALID_CHAR;
 
                 return true;
             }
