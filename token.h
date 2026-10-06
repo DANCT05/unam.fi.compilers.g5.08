@@ -9,17 +9,19 @@ enum TokenType {
     TOKEN_OPERATOR,
     TOKEN_CONSTANT,
     TOKEN_LITERAL,
-    TOKEN_ERROR,
-    WHITESPACE
+
+    TOKEN_ERROR
 };
 
 enum TokenKeyword {
-    TOKEN_IF,
-    TOKEN_ELSE,
-    TOKEN_CHAR,
-    TOKEN_INT,
-    TOKEN_FLOAT,
-    TOKEN_RETURN
+    KEYWORD_IF,
+    KEYWORD_ELSE,
+    KEYWORD_CHAR,
+    KEYWORD_INT,
+    KEYWORD_FLOAT,
+    KEYWORD_RETURN,
+
+    KEYWORD_INVALID
 };
 
 enum TokenPunctuation {
@@ -28,7 +30,9 @@ enum TokenPunctuation {
     PUNCTUATION_LBRACE,      // {
     PUNCTUATION_RBRACE,      // }
     PUNCTUATION_COMMA,       // ,
-    PUNCTUATION_SEMICOLON    // ;
+    PUNCTUATION_SEMICOLON,   // ;
+
+    PUNCTUATION_INVALID
 };
 
 enum TokenOperator {
@@ -53,6 +57,7 @@ enum TokenError {
     ERROR_ID_LAST_SYMBOL,
     ERROR_INVALID_CHAR
 };
+
 
 string tokenToString(TokenType token);
 

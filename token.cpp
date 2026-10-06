@@ -25,9 +25,6 @@ string tokenToString(TokenType token) {
         case TOKEN_ERROR:
             return "TOKEN_ERROR";
 
-        case WHITESPACE:
-            return "WHITESPACE";
-
         default:
             return "UNKNOWN";
     }
@@ -36,45 +33,47 @@ string tokenToString(TokenType token) {
 TokenKeyword getKeywordValue(const string &lexeme) {
 
     if (lexeme == "if")
-        return TOKEN_IF;
+        return KEYWORD_IF;
 
     else if (lexeme == "else")
-        return TOKEN_ELSE;
+        return KEYWORD_ELSE;
 
     else if (lexeme == "char")
-        return TOKEN_CHAR;
+        return KEYWORD_CHAR;
 
     else if (lexeme == "int")
-        return TOKEN_INT;
+        return KEYWORD_INT;
 
     else if (lexeme == "float")
-        return TOKEN_FLOAT;
+        return KEYWORD_FLOAT;
 
     else if (lexeme == "return")
-        return TOKEN_RETURN;
+        return KEYWORD_RETURN;
+
+    return KEYWORD_INVALID;
 }
 
 string keywordToString(TokenKeyword keyword) {
 
     switch (keyword) {
 
-        case TOKEN_IF:
-            return "TOKEN_IF";
+        case KEYWORD_IF:
+            return "KEYWORD_IF";
 
-        case TOKEN_ELSE:
-            return "TOKEN_ELSE";
+        case KEYWORD_ELSE:
+            return "KEYWORD_ELSE";
 
-        case TOKEN_CHAR:
-            return "TOKEN_CHAR";
+        case KEYWORD_CHAR:
+            return "KEYWORD_CHAR";
 
-        case TOKEN_INT:
-            return "TOKEN_INT";
+        case KEYWORD_INT:
+            return "KEYWORD_INT";
 
-        case TOKEN_FLOAT:
-            return "TOKEN_FLOAT";
+        case KEYWORD_FLOAT:
+            return "KEYWORD_FLOAT";
 
-        case TOKEN_RETURN:
-            return "TOKEN_RETURN";
+        case KEYWORD_RETURN:
+            return "KEYWORD_RETURN";
 
         default:
             return "UNKNOWN";
@@ -100,6 +99,8 @@ TokenPunctuation getPunctuationValue(const string &lexeme) {
 
     else if (lexeme == ";")
         return PUNCTUATION_SEMICOLON;
+
+    return PUNCTUATION_INVALID;
 }
 
 string punctuationToString(TokenPunctuation punctuation) {
@@ -185,9 +186,6 @@ string operatorToString(TokenOperator op) {
 
         case OPERATOR_ASSIGN:
             return "OPERATOR_ASSIGN";
-
-        case OPERATOR_INVALID:
-            return "OPERATOR_INVALID";
 
         default:
             return "UNKNOWN";

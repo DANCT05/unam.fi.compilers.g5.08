@@ -49,8 +49,6 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
             invalid_id_middle_symbol = id invalid_char_id+id;
             invalid_id_last_symbol = id invalid_char_id+;
 
-            invalid_id = invalid_id_start_digit|invalid_id_start_symbol|invalid_id_middle_symbol|invalid_id_last_symbol;
-
             ws {
                 continue;
             }
