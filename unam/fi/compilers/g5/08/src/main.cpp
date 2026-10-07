@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "token.h"
 
@@ -7,7 +8,9 @@
 bool yylex(const char *&YYCURSOR,TokenType &token,TokenError &errorValue,string &lexeme);
 
 string openFile(const string &path);
+void printTokenTableHeader();
 void printToken(const pair<int, pair<int, string>> &token);
+void printTokenCounterHeader();
 void printTokenCounters(int keywordCount,int identifierCount,int punctuationCount,int operatorCount,int constantCount,int literalCount);
 
 int main() {
@@ -30,6 +33,7 @@ int main() {
     int constantCount = 0;
     int literalCount = 0;
 
+    printTokenTableHeader();
 
     while (yylex(YYCURSOR, tokenType, errorValue, lexeme)) {
 
@@ -115,6 +119,17 @@ string openFile(const string &path) {
     return input;
 }
 
+void printTokenTableHeader() {
+
+    cout << left
+         << setw(25) << "TOKEN TYPE"
+         << setw(30) << "SUBTYPE"
+         << setw(30) << "LEXEME"
+         << endl;
+
+    cout << string(85, '-') << endl;
+}
+
 
 void printToken(const pair<int, pair<int, string>> &token) {
 
@@ -124,76 +139,97 @@ void printToken(const pair<int, pair<int, string>> &token) {
     int tokenValue = token.second.first;
     string lexeme = token.second.second;
 
-    cout << "<"
-         << tokenToString(tokenType)
-         << ", ";
+    string subtype;
 
     if (tokenValue == -1) {
 
-        cout << "NO_SUBTYPE_VALUE"
-             << ", ";
+        subtype = "NO_SUBTYPE_VALUE";
 
     } else {
 
         switch (tokenType) {
 
             case TOKEN_KEYWORD:
-                cout << keywordToString(
+                subtype = keywordToString(
                     static_cast<TokenKeyword>(tokenValue)
-                ) << ", ";
+                );
                 break;
 
             case TOKEN_PUNCTUATION:
-                cout << punctuationToString(
+                subtype = punctuationToString(
                     static_cast<TokenPunctuation>(tokenValue)
-                ) << ", ";
+                );
                 break;
 
             case TOKEN_OPERATOR:
-                cout << operatorToString(
+                subtype = operatorToString(
                     static_cast<TokenOperator>(tokenValue)
-                ) << ", ";
+                );
                 break;
 
             case TOKEN_ERROR:
-                cout << errorToString(
+                subtype = errorToString(
                     static_cast<TokenError>(tokenValue)
-                ) << ", ";
+                );
                 break;
 
             default:
-                cout << tokenValue << ", ";
+                subtype = "NO_SUBTYPE_VALUE";
                 break;
         }
     }
 
-    cout << lexeme << ">" << endl;
+    cout << left << setw(25) 
+         << tokenToString(tokenType) << setw(30) 
+         << subtype << setw(30) 
+         << lexeme << endl;
 }
+
+void printTokenCounterHeader() {
+
+    cout << left << setw(30) 
+         << "TOKEN TYPE" << setw(10) 
+         << "COUNT" << endl;
+
+    cout << string(40, '-') << endl;
+}
+
 
 void printTokenCounters(int keywordCount,int identifierCount,int punctuationCount,int operatorCount,int constantCount,int literalCount) {
 
     int totalTokens = keywordCount + identifierCount + punctuationCount + operatorCount + constantCount + literalCount;
 
-    cout << "\nToken counters:" << endl;
+    cout << endl;
 
-    cout << "TOKEN_KEYWORD: "
-         << keywordCount << endl;
+    printTokenCounterHeader();
 
-    cout << "TOKEN_IDENTIFIER: "
+    cout << left << setw(30) 
+        << "TOKEN_KEYWORD" << setw(10) 
+        << keywordCount << endl;
+
+    cout << left << setw(30) 
+         << "TOKEN_IDENTIFIER" << setw(10) 
          << identifierCount << endl;
 
-    cout << "TOKEN_PUNCTUATION: "
+    cout << left << setw(30) 
+         << "TOKEN_PUNCTUATION" << setw(10) 
          << punctuationCount << endl;
 
-    cout << "TOKEN_OPERATOR: "
+    cout << left << setw(30) 
+         << "TOKEN_OPERATOR" << setw(10) 
          << operatorCount << endl;
 
-    cout << "TOKEN_CONSTANT: "
+    cout << left << setw(30) 
+         << "TOKEN_CONSTANT" << setw(10) 
          << constantCount << endl;
 
-    cout << "TOKEN_LITERAL: "
+    cout << left << setw(30) 
+         << "TOKEN_LITERAL" << setw(10) 
          << literalCount << endl;
 
-    cout << "TOTAL VALID TOKENS: "
+    cout << string(40, '-') << endl;
+
+    cout << left << setw(30) 
+         << "TOTAL VALID TOKENS" << setw(10) 
          << totalTokens << endl;
 }
