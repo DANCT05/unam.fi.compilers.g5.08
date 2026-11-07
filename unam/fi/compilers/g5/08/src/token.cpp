@@ -153,6 +153,24 @@ TokenOperator getOperatorValue(const string &lexeme) {
     else if (lexeme == "<=")
         return OPERATOR_LESS_EQUAL;
 
+    else if (lexeme == ">")
+        return OPERATOR_GREATER;
+
+    else if (lexeme == "<")
+        return OPERATOR_LESS;
+
+    else if (lexeme == "!=")
+        return OPERATOR_NOT_EQUAL;
+
+    else if (lexeme == "&&")
+        return OPERATOR_AND;
+
+    else if (lexeme == "||")
+        return OPERATOR_OR;
+
+    else if (lexeme == "!")
+        return OPERATOR_NOT;
+
     else if (lexeme == "=")
         return OPERATOR_ASSIGN;
 
@@ -183,6 +201,24 @@ string operatorToString(TokenOperator op) {
 
         case OPERATOR_LESS_EQUAL:
             return "OPERATOR_LESS_EQUAL";
+
+        case OPERATOR_GREATER:
+            return "OPERATOR_GREATER";
+
+        case OPERATOR_LESS:
+            return "OPERATOR_LESS";
+
+        case OPERATOR_NOT_EQUAL:
+            return "OPERATOR_NOT_EQUAL";
+
+        case OPERATOR_AND:
+            return "OPERATOR_AND";
+
+        case OPERATOR_OR:
+            return "OPERATOR_OR";
+
+        case OPERATOR_NOT:
+            return "OPERATOR_NOT";
 
         case OPERATOR_ASSIGN:
             return "OPERATOR_ASSIGN";

@@ -21,14 +21,11 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
 
 
             arithmetic_operator = [-+*/];
-
-            relational_operator = "=="|">="|"<=";
-
+            relational_operator = "=="|">="|"<="|">"|"<"|"!=";
+            logical_operator = "&&"|"||"|"!";
             assignment_operator = "=";
 
-
-            operator = arithmetic_operator | relational_operator | assignment_operator;
-
+            operator = arithmetic_operator | relational_operator | logical_operator | assignment_operator;
 
             punctuation ="("|")"|"{"|"}"| ","|";";
 
@@ -41,6 +38,12 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
             number = digit+("." digit+)?([Ee][+-]? digit+)?;
             literal = "\x22"valid_char_literal*"\x22";
 
+            line_comment = "//" [^\r\n\x00]*;
+
+            block_comment = "/*" (
+                [^*\x00]
+                | "*" [^/\x00]
+            )* "*" "/";
 
             invalid_char_id = [\x22\x27@#$%?.];
 
@@ -50,6 +53,10 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
             invalid_id_last_symbol = id invalid_char_id+;
 
             ws {
+                continue;
+            }
+
+            line_comment | block_comment {
                 continue;
             }
 
