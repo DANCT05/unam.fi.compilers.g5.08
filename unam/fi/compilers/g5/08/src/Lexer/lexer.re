@@ -1,7 +1,7 @@
 #include <string>
-#include "token.h"
+#include "../Token/token.h"
 
-bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, string &lexeme) {
+bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, string &lexeme, int &line) {
     const char *YYMARKER;
 
     while (true) {
@@ -16,9 +16,7 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
             letter = [A-Za-z];
             digit = [0-9];
 
-
-            keyword = "if"|"else"|"char"|"int"|"float"|"return";
-
+            keyword = "int"|"float"|"char"|"string"|"void"|"if"|"else"|"for"|"while"|"return";
 
             arithmetic_operator = [-+*/];
             relational_operator = "=="|">="|"<="|">"|"<"|"!=";
@@ -29,21 +27,17 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
 
             punctuation ="("|")"|"{"|"}"| ","|";";
 
-            ws = [ \t\r\n]+;
+            ws = [ \t\r]+;
+            newline = "\n";
 
             valid_char_literal = letter|digit|operator|ws|punctuation|[\x27@#$%?.];
 
 
-            id = letter(letter | digit)*;
+            id = (letter | "_")(letter | digit | "_")*;
             number = digit+("." digit+)?([Ee][+-]? digit+)?;
             literal = "\x22"valid_char_literal*"\x22";
 
             line_comment = "//" [^\r\n\x00]*;
-
-            block_comment = "/*" (
-                [^*\x00]
-                | "*" [^/\x00]
-            )* "*" "/";
 
             invalid_char_id = [\x22\x27@#$%?.];
 
@@ -52,11 +46,12 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
             invalid_id_middle_symbol = id invalid_char_id+id;
             invalid_id_last_symbol = id invalid_char_id+;
 
-            ws {
+            ws | line_comment {
                 continue;
             }
 
-            line_comment | block_comment {
+            newline {
+                line++;
                 continue;
             }
 
@@ -142,7 +137,7 @@ bool yylex(const char *&YYCURSOR, TokenType &token, TokenError &errorValue, stri
 
             "\x00" {
                 lexeme.clear();
-
+                token = TOKEN_EOF;
                 return false;
             }
 

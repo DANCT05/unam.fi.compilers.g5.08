@@ -1,6 +1,1 @@
-int a = 10; // Asignamos el valor 10
-
-/* Incrementamos
-   el valor de a */
-
-a = a + 1;
+int x = 10;

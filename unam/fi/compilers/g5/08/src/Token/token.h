@@ -1,7 +1,11 @@
+#ifndef LL1_TOKEN_TOKEN_H
+#define LL1_TOKEN_TOKEN_H
+
 #include <string>
 
 using namespace std;
 
+// Token types
 enum TokenType {
     TOKEN_KEYWORD,
     TOKEN_IDENTIFIER,
@@ -10,20 +14,29 @@ enum TokenType {
     TOKEN_CONSTANT,
     TOKEN_LITERAL,
 
+    TOKEN_EOF,
     TOKEN_ERROR
 };
 
+// Keyword subtypes
 enum TokenKeyword {
-    KEYWORD_IF,
-    KEYWORD_ELSE,
-    KEYWORD_CHAR,
     KEYWORD_INT,
     KEYWORD_FLOAT,
+    KEYWORD_CHAR,
+    KEYWORD_STRING,
+    KEYWORD_VOID,
+
+    KEYWORD_IF,
+    KEYWORD_ELSE,
+    KEYWORD_FOR,
+    KEYWORD_WHILE,
+
     KEYWORD_RETURN,
 
     KEYWORD_INVALID
 };
 
+// Punctuation subtypes
 enum TokenPunctuation {
     PUNCTUATION_LPAREN,      // (
     PUNCTUATION_RPAREN,      // )
@@ -35,6 +48,7 @@ enum TokenPunctuation {
     PUNCTUATION_INVALID
 };
 
+// Operator subtypes
 enum TokenOperator {
     OPERATOR_PLUS,
     OPERATOR_MINUS,
@@ -57,6 +71,7 @@ enum TokenOperator {
     OPERATOR_INVALID
 };
 
+// Error subtypes
 enum TokenError {
     ERROR_ID_START_DIGIT,
     ERROR_ID_START_SYMBOL,
@@ -65,18 +80,32 @@ enum TokenError {
     ERROR_INVALID_CHAR
 };
 
+// Token structure
+struct Token {
+    TokenType type;
+    int subtype;
+    string lexeme;
+    
+    int line;
+};
 
+// Token functions
 string tokenToString(TokenType token);
+string tokenSymbol(const Token &token);
 
+// Keyword functions
 TokenKeyword getKeywordValue(const string &lexeme);
 string keywordToString(TokenKeyword keyword);
 
-
+// Punctuation functions
 TokenPunctuation getPunctuationValue(const string &lexeme);
 string punctuationToString(TokenPunctuation punctuation);
 
-
+// Operator functions
 TokenOperator getOperatorValue(const string &lexeme);
 string operatorToString(TokenOperator op);
 
+// Error functions
 string errorToString(TokenError error);
+
+#endif // LL1_TOKEN_TOKEN_H
