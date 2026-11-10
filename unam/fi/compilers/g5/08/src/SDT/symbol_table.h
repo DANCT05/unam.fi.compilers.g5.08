@@ -18,10 +18,8 @@ struct SymbolTable {
     map<string, Symbol> symbols;
 };
 
-// Inicializa la tabla de simbolos.
 void initializeSymbolTable(SymbolTable& table);
 
-// Registra una variable si no existe previamente.
 bool declareSymbol(SymbolTable& table, const Symbol& symbol);
 
 #endif

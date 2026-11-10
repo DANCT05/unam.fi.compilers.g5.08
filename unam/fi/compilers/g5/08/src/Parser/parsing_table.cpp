@@ -17,7 +17,6 @@ void createPredictiveTable() {
         set<string> selectedFirst = firstOfSequence(production.right);
         set<string> columns;
 
-        // Para A -> alpha, utilizar FIRST(alpha) sin epsilon.
         auto current = selectedFirst.begin();
         while (current != selectedFirst.end()) {
             if (*current != epsilon) {

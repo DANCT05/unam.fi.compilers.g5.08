@@ -13,7 +13,6 @@ using namespace std;
 bool parse(const vector<Token>& tokens, string& error,
            ParseTree& tree, ostream* trace = nullptr);
 
-// Sobrecarga para conservar llamadas anteriores al parser.
 bool parse(const vector<Token>& tokens, string& error,
            ostream* trace = nullptr);
 
